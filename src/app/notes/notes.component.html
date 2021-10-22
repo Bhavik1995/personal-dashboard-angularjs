@@ -1,15 +1,7 @@
 <div class="notes-wrapper">
     <div class="container">
         <div class="notes-list">
-            <div class="note-card">
-                <div class="note-card-title">
-                    this is title
-                </div>
-
-                <div class="note-card-content">
-                    Yeh dil mange more....!
-                </div>
-            </div>
+            <app-note-card *ngFor="let note of notes" [note]="note"></app-note-card>
         </div>
 
         <div class="btns-container btns-centered">
