@@ -30,6 +30,10 @@ h2.is-bold{
     letter-spacing: -2px;
 }
 
+a{
+    text-decoration: none;
+}
+
 .container{
     max-width: 850px;
     margin: auto;
@@ -64,6 +68,7 @@ h2.is-bold{
 .btns-container{
     display: flex;
     margin-top: 20px;
+    gap: 12px;
 
     &.btns-centered{
         justify-content: center;
@@ -84,6 +89,10 @@ h2.is-bold{
     backdrop-filter: blur(2px);
 }
 
+.form-field{
+    margin-bottom: 20px;
+}
+
 .textbox, textarea{
     font-size: 18px;
     font-family: inherit;
@@ -92,7 +101,7 @@ h2.is-bold{
     background-color: rgba(white,0.9);
     border: 2px solid rgba(black,0.3);
     border-radius: 4px;
-    margin-bottom: 20px;
+    // margin-bottom: 20px;
     display: block;
 
     &:hover{
