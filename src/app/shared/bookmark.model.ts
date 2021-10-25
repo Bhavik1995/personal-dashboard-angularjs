@@ -11,5 +11,8 @@ export class Bookmark{
         this.name  = name,
         this.url = new URL(url);
 
+        if(!name) name = this.url.hostname
+        this.name = name
+
     }
 }

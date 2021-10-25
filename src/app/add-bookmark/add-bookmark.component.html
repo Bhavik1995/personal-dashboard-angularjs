@@ -3,22 +3,24 @@
 
     <h2 class="is-bold">Add Bookmark</h2>
     
-    <form #form="ngForm">
+    <form #form="ngForm" ngNativeValidate (ngSubmit)="onFormSubmit(form)">
         <div class="form-field">
-            <input required class="textbox" #textField="ngModel" ngModel name="name" type="text" placeholder="e.g. Wikipedia" minlength="3">
-            <ng-container>
+            <label class="form-label">Name</label>
+            <input class="textbox" #textField="ngModel" ngModel name="name" type="text" placeholder="e.g. Wikipedia">
+            <!-- <ng-container>
                 <p *ngIf="textField.errors.required" style="color: red;">Please enter text for todo</p>
                 <p *ngIf="textField.errors.minlength" style="color: red;">Todo text must be at least 3 characters</p>
-            </ng-container>
+            </ng-container> -->
             
         </div>
 
         <div class="form-field">
-            <input required class="textbox" #textField="ngModel" ngModel name="url" type="url" placeholder="e.g. http://wikipedia.com">
-            <ng-container>
+            <label class="form-label">URL</label>
+            <input class="textbox" #textField="ngModel" ngModel name="url" type="url" placeholder="e.g. http://wikipedia.com" required>
+            <!-- <ng-container>
                 <p *ngIf="textField.errors.required" style="color: red;">Please enter text for todo</p>
                 <p *ngIf="textField.errors.minlength" style="color: red;">Todo text must be at least 3 characters</p>
-            </ng-container>
+            </ng-container> -->
             
         </div>
 
