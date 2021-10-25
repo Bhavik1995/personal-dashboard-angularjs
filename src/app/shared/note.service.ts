@@ -7,6 +7,7 @@ import { Note } from './note.model';
 export class NoteService {
 
   notes: Note[] = [
+    new Note("hey","hello")
    
   ]
 
@@ -33,8 +34,8 @@ export class NoteService {
 
    deleteNote(id: string){
      const noteIndex = this.notes.findIndex(n => n.id===id)
-     if(noteIndex == -1){
-      return this.notes.splice(noteIndex,1)
-     }     
+     if(noteIndex == -1) return 
+     this.notes.splice(noteIndex,1)
+       
    }
 }

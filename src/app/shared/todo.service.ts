@@ -8,21 +8,18 @@ export class TodoService {
 
   todos: Todo[] = [
     new Todo('this is test'),
-    new Todo('this is test')
+    new Todo('hey')
   ]
 
-  constructor() { 
-    
-  }
+  constructor() { }
 
   getTodos(){
     return this.todos
   }
 
   getTodo(id: string){
-    this.todos.find(t =>{
-      return t.id === id
-    })
+   return this.todos.find(t => t.id === id)
+    
   }
 
   addTodo(todo: Todo){
@@ -35,12 +32,10 @@ export class TodoService {
   }
 
   deleteTodo(id: string){
-    const index = this.todos.findIndex(t =>{
-       t.id === id
+    const index = this.todos.findIndex(t => t.id === id)
 
-       if(index == -1){
-         return this.todos.splice(index, 1)
-       }
-    })
+       if(index == -1)return 
+       this.todos.splice(index, 1)
+       
   }
 }

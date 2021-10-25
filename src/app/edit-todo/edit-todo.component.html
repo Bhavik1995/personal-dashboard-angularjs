@@ -1,0 +1,24 @@
+<div class="edit-todo-wrapper container has-blurred-white-bg">
+
+    <h2 class="is-bold">Edit Todo</h2>
+
+    <p *ngIf="!todo" style="color: red;">Todo Not Found</p>
+    
+    <form #form="ngForm" *ngIf="todo" (ngSubmit)="onFormSubmit(form)">
+        <div class="form-field">
+            <input required class="textbox" #textField="ngModel" [ngModel]="todo.text" name="text" type="text" placeholder="Enter todo text" minlength="3">
+            <ng-container>
+                <p *ngIf="textField.errors.required" style="color: red;">Please enter text for todo</p>
+                <p *ngIf="textField.errors.minlength" style="color: red;">Todo text must be at least 3 characters</p>
+            </ng-container>
+            
+        </div>
+
+        <div class="btns-container">
+            <a routerLink="../" class="btn">Cancel</a>
+            <button type="submit" class="btn align-end">Save</button>
+        </div>
+       
+    </form>
+
+</div>
