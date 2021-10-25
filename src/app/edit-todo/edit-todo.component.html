@@ -7,7 +7,7 @@
     <form #form="ngForm" *ngIf="todo" (ngSubmit)="onFormSubmit(form)">
         <div class="form-field">
             <input required class="textbox" #textField="ngModel" [ngModel]="todo.text" name="text" type="text" placeholder="Enter todo text" minlength="3">
-            <ng-container>
+            <ng-container *ngIf="textField.invalid">
                 <p *ngIf="textField.errors.required" style="color: red;">Please enter text for todo</p>
                 <p *ngIf="textField.errors.minlength" style="color: red;">Todo text must be at least 3 characters</p>
             </ng-container>

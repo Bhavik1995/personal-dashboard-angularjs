@@ -4,14 +4,16 @@
    
 }
 
-
-
-
 .bookmark-tiles-container{
     display: flex;
     gap: 20px;
     justify-content: center;
 
     flex-wrap: wrap;
+}
+
+.add-btn i{
+    margin-right: 5px;
+    margin-left: -3px;
 }
 

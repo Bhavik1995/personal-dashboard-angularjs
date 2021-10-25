@@ -38,3 +38,11 @@
     white-space: nowrap;
     text-overflow: ellipsis;
 }
+
+.tile-icon{
+    height: 32px;
+    width: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

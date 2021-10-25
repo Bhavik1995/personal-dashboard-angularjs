@@ -12,6 +12,7 @@ import { TodoService } from '../shared/todo.service';
 export class EditTodoComponent implements OnInit {
 
   todo: Todo
+  
 
   constructor(private route: ActivatedRoute, private todoService: TodoService, private router: Router) { }
 
@@ -26,6 +27,7 @@ export class EditTodoComponent implements OnInit {
   onFormSubmit(form: NgForm){
     console.log(form);
 
+    if(form.invalid) return
     this.todoService.updateTodo(this.todo.id, form.value)
     this.router.navigateByUrl('/todos')
 
