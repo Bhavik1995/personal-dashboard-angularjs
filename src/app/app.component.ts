@@ -107,6 +107,90 @@ import { Event, RouterOutlet } from '@angular/router';
     
           ]),
           
+        ]),
+
+        transition('* => secondary',[
+          style({
+            position: 'relative',
+            // overflow: 'hidden'
+          }),
+    
+          query(':enter, :leave',[
+            style({
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+                // display: 'block'
+            })
+          ],{optional: true}),
+    
+    
+    
+          group([
+            query(':leave',[
+              animate('200ms ease-in',style({
+                opacity: 0,
+                transform: 'scale(0.8)'
+              }))
+    
+            ],{optional:true}),
+    
+            query(':enter',[
+              style({
+                transform: 'scale(1.2)',
+                opacity: 0,
+              }),
+              animate('250ms 120ms ease-out', style({
+                opacity: 1,
+                transform: 'scale(1)'
+              }))
+            ],{optional: true})
+    
+          ]),
+        ]),
+
+        transition('secondary => *',[
+          style({
+            position: 'relative',
+            // overflow: 'hidden'
+          }),
+    
+          query(':enter, :leave',[
+            style({
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+                // display: 'block'
+            })
+          ],{optional: true}),
+    
+    
+    
+          group([
+            query(':leave',[
+              animate('200ms ease-in',style({
+                opacity: 0,
+                transform: 'scale(0.8)'
+              }))
+    
+            ],{optional:true}),
+    
+            query(':enter',[
+              style({
+                transform: 'scale(1.2)',
+                opacity: 0,
+              }),
+              animate('250ms 120ms ease-out', style({
+                opacity: 1,
+                transform: 'scale(1)'
+              }))
+            ],{optional: true})
+    
+          ]),
         ])
     ]),
 
@@ -144,8 +228,12 @@ export class AppComponent {
   loadingBGImage: boolean
 
   prepareRoute(outlet: RouterOutlet){
-    if(outlet.isActivated)
-    return outlet.activatedRouteData['tab']
+    if(outlet.isActivated){
+    const tab =  outlet.activatedRouteData['tab']
+
+    if(!tab) return 'secondary'
+        return tab
+    }
 
   }
 
