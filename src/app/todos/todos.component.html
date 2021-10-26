@@ -1,7 +1,7 @@
 <div class="todos-wrapper">
 
     <div class="container">
-    <app-todo-item *ngFor="let todo of todos" 
+    <app-todo-item *ngFor="let todo of todos; trackBy: trackById" 
 
     @todoItemAnim
     [todo]="todo" 
