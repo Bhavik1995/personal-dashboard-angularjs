@@ -10,8 +10,11 @@
     <i class="material-icons">refresh</i>
   </div>
   <div class="top-section">
-    <h1>19:00</h1>
-    <h2>20-10-2021</h2>
+    <!-- <h1></h1> -->
+
+    <h1>{{ dateTime | async | date:'hh : mm a' }}</h1>
+    <h2>{{ dateTime | async | date:'d MMMM yyyy'}}</h2>
+    
   </div>
 
 <div class="content-section" [@routeAnim]="prepareRoute(outlet)">

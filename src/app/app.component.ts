@@ -1,6 +1,8 @@
 import { animate, query, style, transition, trigger, group } from '@angular/animations';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Event, RouterOutlet } from '@angular/router';
+import { Observable, timer } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 
 @Component({
@@ -174,14 +176,14 @@ import { Event, RouterOutlet } from '@angular/router';
             query(':leave',[
               animate('200ms ease-in',style({
                 opacity: 0,
-                transform: 'scale(0.8)'
+                transform: 'scale(1.25)'
               }))
     
             ],{optional:true}),
     
             query(':enter',[
               style({
-                transform: 'scale(1.2)',
+                transform: 'scale(0.8)',
                 opacity: 0,
               }),
               animate('250ms 120ms ease-out', style({
@@ -219,13 +221,23 @@ import { Event, RouterOutlet } from '@angular/router';
     ])
   ]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
   backgrounds: string[] = [
     'https://images.unsplash.com/photo-1633836331520-e35c668f1f9d?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=1080&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTYzNDcxMTM3NQ&ixlib=rb-1.2.1&q=80&w=1920'
 ]
 
   loadingBGImage: boolean
+
+  dateTime: Observable<Date>
+
+  ngOnInit(){
+     this.dateTime = timer(0,1000).pipe(
+          map(()=>{
+            return new Date()
+          })
+      )
+  }
 
   prepareRoute(outlet: RouterOutlet){
     if(outlet.isActivated){
