@@ -251,7 +251,7 @@ export class AppComponent implements OnInit {
 
  async changeBgImg(){
    this.loadingBGImage = true
-   const result= await fetch('https://source.unsplash.com/random/1920x1080',{
+   const result= await fetch('https://source.unsplash.com/featured/1920x1080',{
       method:'HEAD'
     })
 
