@@ -249,21 +249,64 @@ export class AppComponent implements OnInit {
 
   }
 
- async changeBgImg(){
-   this.loadingBGImage = true
-   const result= await fetch('https://source.unsplash.com/featured/1920x1080',{
-      method:'HEAD'
-    })
+ // async changeBgImg(){
+ //   this.loadingBGImage = true
+ //   const result= await fetch('https://source.unsplash.com/featured/1920x1080',{
+ //      method:'HEAD'
+ //    })
 
-   const alreadyGot = this.backgrounds.includes(result.url)
-   if(alreadyGot){
-     //this is the same image as we currently have, so re run the function 
-     return this.changeBgImg();
+ //   const alreadyGot = this.backgrounds.includes(result.url)
+ //   if(alreadyGot){
+ //     //this is the same image as we currently have, so re run the function 
+ //     return this.changeBgImg();
 
-   }
+ //   }
 
-    this.backgrounds.push(result.url)
+ //    this.backgrounds.push(result.url)
+ //  }
+
+  async changeBgImg() {
+      this.loadingBGImage = true
+      const API_KEY = '563492ad6f91700001000001958daa7b44c34aeb9da0643786e08151';
+      const query = 'nature';
+      const perPage = 15;
+      const randomPage = Math.floor(Math.random() * 50) + 1; // Pages 1–50
+    
+      const response = await fetch(`https://api.pexels.com/v1/search?query=${query}&per_page=${perPage}&page=${randomPage}`, {
+        headers: {
+          Authorization: API_KEY,
+        }
+      });
+    
+      const data = await response.json();
+
+    if (!data.photos || !data.photos.length) {
+      console.warn("No images received from Pexels");
+      this.loadingBGImage = false;
+      return;
+    }
+
+    const randomIndex = Math.floor(Math.random() * data.photos.length);
+    const imageUrl = data.photos[randomIndex].src.landscape; // Or use original/large2x
+
+    const alreadyGot = this.backgrounds.includes(imageUrl);
+    if (alreadyGot) {
+      // Already used this image, try again
+      return this.changeBgImg();
+    }
+
+    this.backgrounds.push(imageUrl);
+
+    // Example: set background (optional)
+    document.body.style.backgroundImage = `url(${imageUrl})`;
+
+  } catch (err) {
+    console.error("Failed to fetch from Pexels", err);
+  } finally {
+    this.loadingBGImage = false;
   }
+}
+
 
   onBGImageLoad(imgEvent: { target: HTMLImageElement }) {
     // BG image has loaded, now remove the old BG image from the backgrounds array
